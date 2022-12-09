@@ -15,6 +15,7 @@ const ViewDex = () => {
     const [loading, setLoading] = useState(false);
     const [pokemon, setPokemon] = useState([]);
     const { username, password } = useContext(AppContext);
+    
     console.log('CREDENTIALS=>', username);
 
     //modalize
@@ -86,6 +87,7 @@ const ViewDex = () => {
                     ref={modalRef}
                     snapPoint={200}
                     height={200}
+                    modalStyle={theme.modal}
                 >
                     <InputSearch setPokemon={setPokemon} />
                 </Modalize>

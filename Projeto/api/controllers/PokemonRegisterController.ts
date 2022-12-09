@@ -37,7 +37,8 @@ class PokemonRegisterController {
 
   create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const data: any = await this._validateData(req.body);
+      console.log(req)
+      const data: any = req.body;
       const user = await PokemonModel.create(data);
       res.json(user);
     } catch (error: any) {
@@ -76,9 +77,10 @@ class PokemonRegisterController {
 
   _validateData = async (data: any, id?: any) => {
     const attributes = ["name", "description", "sex", "shiny", "type1", "type2", "species", "ability",
-      "move1", "move2", "move3", "move4", "hp", "def", "spdef", "spatk", "speed", "atk", "nature"];
+      "move1", "move2", "move3", "move4", "hp", "def", "spdef", "spatk", "speed", "atk"];
     const pokemon: any = {};
-
+    console.log(data);
+    
     for (const attribute of attributes) {
       if (!data[attribute]) {
         throw new Error(`The attribute "${attribute}" is required.`);

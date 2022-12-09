@@ -24,6 +24,9 @@ import {
 
 import { useFonts } from 'expo-font'; //1
 import { AppProvider } from "./src/context/AppContext";
+import ViewTrades from "./src/screens/ViewTrades";
+import ViewCreatePokemon from "./src/screens/ViewCreatePokemon";
+import ViewCreateUser from "./src/screens/ViewCreateUser";
 
 const Stack = createNativeStackNavigator();
 
@@ -52,6 +55,9 @@ export default function App() {
               <Stack.Screen name="ViewDex" component={ViewDex} />
               <Stack.Screen name="ViewNewLogin" component={ViewNewLogin} />
               <Stack.Screen name="ViewUsers" component={ViewUsers} />
+              <Stack.Screen name="ViewTrades" component={ViewTrades} />
+              <Stack.Screen name="ViewCreatePokemon" component={ViewCreatePokemon} />
+              <Stack.Screen name="ViewCreateUser" component={ViewCreateUser} />
             </Stack.Navigator>
           </NavigationContainer>
 

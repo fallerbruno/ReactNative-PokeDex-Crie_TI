@@ -5,7 +5,13 @@ import Modal from "react-native-modal";
 
 import { theme } from '../styles/Theme';
 import CustomButton from './CustomButton';
-
+import {
+    LineChart,
+    BarChart,
+    PieChart,
+    ProgressChart,
+    ContributionGraph
+} from 'react-native-chart-kit'
 
 const { width, height } = Dimensions.get('window');
 
@@ -18,12 +24,12 @@ const CardPokemon = (pokemon) => {
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
-    
+
     let pokemonName = pokemon.name[0].toUpperCase() + pokemon.name.substring(1)
     const description = pokemon.description.replace(/(\r\n|\n|\r)/gm, "");
     return (
         <>
-       
+
             <TouchableOpacity activeOpacity={0.6} style={[{ backgroundColor: colorsByTypeTag(pokemon.type1) }, theme.card, theme.shadows]} onPress={() => toggleModal(pokemon)}>
                 <Image
                     style={{ width: width * .3, height: height * .12, alignSelf: "center", backgroundColor: colorsByTypeTag(pokemon.type1), borderRadius: 16, marginTop: 12 }}
@@ -62,9 +68,76 @@ const CardPokemon = (pokemon) => {
                             <Text style={[colorsByType(pokemon.type1), theme.cardText]}>{pokemon.type1[0].toUpperCase() + pokemon.type1.substring(1)}</Text>
                         }
                         <Text style={theme.PokemonDescriptionModal}>Description: {description}</Text>
-                        
-                        <View style={{alignItems: 'center'}}>
-                        <CustomButton label="Close" backgroundColor='white' onPress={toggleModal} />
+                        <Text style={theme.PokemonNameModal}>Pokemon Status</Text>
+                        <PieChart
+                            data={[
+                                {
+                                    name: 'HP',
+                                    AMOUNT: pokemon.hp,
+                                    color: '#FA4A37',
+                                    legendFontColor: '#7F7F7F',
+                                    legendFontSize: 15,
+                                },
+                                {
+                                    name: 'ATK',
+                                    AMOUNT: pokemon.atk,
+                                    color: '#bebebe',
+                                    legendFontColor: '#7F7F7F',
+                                    legendFontSize: 15,
+                                },
+                                {
+                                    name: 'SPATK',
+                                    AMOUNT: pokemon.spatk,
+                                    color: '#1D21F5',
+                                    legendFontColor: '#7F7F7F',
+                                    legendFontSize: 15,
+                                },
+                                {
+                                    name: 'DEF',
+                                    AMOUNT: pokemon.def,
+                                    color: '#E0DA2D',
+                                    legendFontColor: '#7F7F7F',
+                                    legendFontSize: 15,
+                                },
+                                {
+                                    name: 'SPDEF',
+                                    AMOUNT: pokemon.spdef,
+                                    color: '#8910DE',
+                                    legendFontColor: '#7F7F7F',
+                                    legendFontSize: 15,
+                                },
+                                {
+                                    name: 'SPEED',
+                                    AMOUNT: pokemon.speed,
+                                    color: '#34FA58',
+                                    legendFontColor: '#7F7F7F',
+                                    legendFontSize: 15,
+                                },
+                            ]}
+                            width={Dimensions.get('window').width - 16}
+                            height={220}
+                            
+                            chartConfig={{
+                                backgroundColor: '#1cc910',
+                                backgroundGradientFrom: '#eff3ff',
+                                backgroundGradientTo: '#efefef',
+                                
+                                color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                                style: {
+                                    borderRadius: 16,
+                                },
+                            }}
+                            style={{
+                                marginVertical: 8,
+                                borderRadius: 16,
+                            }}
+                            accessor="AMOUNT"
+                            backgroundColor="transparent"
+                            paddingLeft="15"
+                            absolute //for the absolute number remove if you want percentage
+                        />
+                        <View style={{ alignItems: 'center' }}>
+                            <CustomButton label="Close" backgroundColor='white' onPress={toggleModal} />
                         </View>
                     </View>
                 </Modal>

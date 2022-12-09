@@ -39,7 +39,7 @@ const ViewNewLogin = ({ navigation }) => {
                     saveUser(user, pass);
                     navigation.reset({
                         index: 0,
-                        routes: [{ name: "ViewDex" }]
+                        routes: [{ name: "ViewNav1" }]
                     });
                 } else {
                     Alert.alert('Que pena 😥', json.message);
@@ -64,7 +64,7 @@ const ViewNewLogin = ({ navigation }) => {
                     logoImageSource={require("../assets/logo.jpg")}
                     style={{ backgroundColor: 'white' }}
                     onLoginPress={() => login(novoUsuario.username, novoUsuario.password)}
-                    onSignupPress={() => { }}
+                    onSignupPress={() => navigation.navigate("ViewCreateUser")}
                     onEmailChange={(email) => { novoUsuario.username = email }}
                     onPasswordChange={(password) => { novoUsuario.password = password }}
                     disableSocialButtons

@@ -84,10 +84,6 @@ PokemonRegister.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    natue: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     sex: {
       type: DataTypes.STRING,
       allowNull: false,

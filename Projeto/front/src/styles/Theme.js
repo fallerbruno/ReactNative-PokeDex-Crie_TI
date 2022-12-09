@@ -16,6 +16,17 @@ export const theme = StyleSheet.create({
         paddingLeft: 8,
         fontFamily: "Ubuntu_400Regular",
     },
+    inputModal: {
+        borderWidth: 1,
+        borderColor: '#06FF73',
+        backgroundColor: "white",
+        height: 42,
+        borderRadius: 8,
+        width: '100%',
+        marginBottom: 16,
+        paddingLeft: 8,
+        fontFamily: "Ubuntu_400Regular",
+    },
     button: {
         backgroundColor: '#333',
         height: 48,
@@ -55,7 +66,7 @@ export const theme = StyleSheet.create({
         justifyContent: "center",
         fontFamily: " Ubuntu_700Bold",
         textAlign: 'center',
-        padding: 16
+        padding: 16,
     },
     containerNormal: {
 
@@ -65,7 +76,7 @@ export const theme = StyleSheet.create({
         padding: 5,
         width: 75,
         alignSelf: "center"
-        
+
     },
     containerEletric: {
 
@@ -239,12 +250,20 @@ export const theme = StyleSheet.create({
         margin: 6,
         padding: 8,
     },
+   
     cardText: {
         fontSize: 15,
         fontFamily: "Ubuntu_700Bold",
         textAlign: "center",
         color: "black",
         padding: 5
+    },
+    cardText2: {
+        fontSize: 24,
+        fontFamily: "Ubuntu_700Bold",
+        color: "black",
+        padding: 10,
+        marginTop: 5
     },
     modal: {
         backgroundColor: '#333',
@@ -258,7 +277,7 @@ export const theme = StyleSheet.create({
         marginTop: 5,
         padding: 8
     },
-    conintanerblack:{
+    conintanerblack: {
         backgroundColor: '#333'
     },
     PokemonNameModal: {
@@ -275,21 +294,32 @@ export const theme = StyleSheet.create({
         padding: 10,
         alignSelf: "flex-end"
     },
-    PokemonTextModal:{
+    PokemonTextModal: {
         fontSize: 16,
         fontFamily: "Ubuntu_700Bold",
         color: "white",
         textAlign: 'center',
         marginTop: 5
     },
-    PokemonDescriptionModal:{
+    PokemonDescriptionModal: {
         fontSize: 12,
         fontFamily: "Ubuntu_700Bold",
         color: "white",
         marginTop: 5,
         padding: 10
+    },
+    PokemonDescriptionModal2: {
+        fontSize: 16,
+        fontFamily: "Ubuntu_700Bold",
+        color: "white",
+        marginTop: 5,
+        padding: 5
+    },
+    navtext: {
+        fontSize: 24,
+        fontFamily: "Ubuntu_700Bold",
+        color: "white",
+        padding: 10,
+        textAlign: 'center'
     }
-
-
-
 });

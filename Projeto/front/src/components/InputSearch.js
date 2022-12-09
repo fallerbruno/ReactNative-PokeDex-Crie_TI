@@ -20,7 +20,7 @@ const InputSearch = ({ value, setPokemon }) => {
 
   }, [SearchPokemon])
 
-  async function SearchPokemon(search) {
+   const SearchPokemon = async (search) => {
 
     setLoading(true);
 
@@ -46,7 +46,7 @@ const InputSearch = ({ value, setPokemon }) => {
     }
   }
 
-  async function Clear() {
+  const Clear = async () =>{
     const response = await fetch('http://177.44.248.33:3000/pokemons', {
       method: 'GET',
       headers: {
@@ -72,21 +72,21 @@ const InputSearch = ({ value, setPokemon }) => {
         placeholder={isFocused ? '' : 'Qual Pokémon você está procurando?'}
         value={search}
         onChangeText={(value) => setSearch({ ...search, search: value })}
-        style={theme.input}
+        style={theme.inputModal}
       />
       <View style={theme.typesContaner}>
         <CustomButton
           label="Search"
           onPress={() => SearchPokemon(search)}
-          backgroundColor="#bebebe"
+          backgroundColor="#06FF73"
           textColor="#000"
-          width="40%" />
+          width="48%" />
         <CustomButton
           label="Clear"
           onPress={() => Clear()}
-          backgroundColor="#bebebe"
+          backgroundColor="#02A2E6"
           textColor="#000"
-          width="40%" />
+          width="48%" />
       </View>
     </View >
   );
