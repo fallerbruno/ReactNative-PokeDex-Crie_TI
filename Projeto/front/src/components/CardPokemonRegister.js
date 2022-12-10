@@ -141,7 +141,7 @@ const CardPokemonRegister = (pokemon) => {
                         </View>
                         <Text style={theme.PokemonDescriptionModal2}>Ability: {pokemon.ability}</Text>
                         <Text style={theme.PokemonDescriptionModal2}>Shiny: {pokemon.shiny ? "Yes" : "No"}</Text>
-                        <Text style={theme.PokemonDescriptionModal2}>Nature:  Nature</Text>
+                        <Text style={theme.PokemonDescriptionModal2}>Nature:{pokemon.nature}</Text>
                         <Text style={theme.PokemonDescriptionModal2}>SEX:  <AntDesign name={icone_sexo} size={16} /></Text>
                         <Text style={theme.PokemonDescriptionModal2}>Date:  {pokemon.updatedAt.split('-').join('/').slice(0, 10)}</Text>
                         </View>

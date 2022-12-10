@@ -48,7 +48,7 @@ class TypeController {
   };
 
   _validateData = async (data: any) => {
-    const attributes = ["name", "description"];
+    const attributes = ["name"];
     const Item: any = {};
 
     for (const attribute of attributes) {

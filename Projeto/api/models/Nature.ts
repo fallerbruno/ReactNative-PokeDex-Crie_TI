@@ -22,17 +22,13 @@ Nature.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     statusUp: {
       type: DataTypes.STRING,
-      allowNull: true
+   
     },
     statusDown: {
       type: DataTypes.STRING,
-      allowNull: true
+   
     },
   },
   {

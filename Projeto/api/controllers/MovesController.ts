@@ -3,7 +3,6 @@ import { Request, Response, NextFunction } from 'express';
 import MoveModel from '../models/Move';
 
 class MovesController {
-
   index = async (req: Request, res: Response) => {
     const params = req.query;
     const limit: number = parseInt(params.limit as string) || 100;
@@ -55,14 +54,14 @@ class MovesController {
       where: where,
       limit: limit,
       offset: offset,
-      order: [[sort, order]]
+      order: [[sort, order]],
     });
     res.json(moves);
   }
 
   create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const data = await this._validateData(req.body);
+      const data = await req.body;
       const user = await MoveModel.create(data);
       res.json(user);
     }
@@ -102,7 +101,7 @@ class MovesController {
   }
 
   _validateData = async (data: any, id?: any) => {
-    const attributes = ['name', 'description', 'accuracy', 'pp', 'condition'];
+    const attributes = ['name', 'description', 'accuracy', 'pp', 'condition','element', 'effect_chance'];
     const move: any = {};
 
     for (const attribute of attributes) {

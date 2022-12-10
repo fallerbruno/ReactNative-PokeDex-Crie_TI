@@ -12,6 +12,7 @@ const ViewNewLogin = ({ navigation }) => {
     const novoUsuario = {
         username: '',
         password: '',
+        id: 0,
         saveUser: false,
     }
 
@@ -32,11 +33,11 @@ const ViewNewLogin = ({ navigation }) => {
                     }
                 });
                 const json = await response.json();
-
+                const id = json.id
                 setLoading(false);
                 if (json.id) {
                     //dados Ok =>navegar adiante
-                    saveUser(user, pass);
+                    saveUser(user, pass, id );
                     navigation.reset({
                         index: 0,
                         routes: [{ name: "ViewNav1" }]

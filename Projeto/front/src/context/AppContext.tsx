@@ -10,8 +10,9 @@ interface IProps {
 export interface IAppContext {
   username: string;
   password: string;
+  id: number;
   //passa a funcao de salvar usuario
-  saveUser: (username: string, password: string) => void;
+  saveUser: (username: string, password: string, id: number) => void;
 }
 
 /*exportação para utilização nas telas em que as informações
@@ -23,12 +24,14 @@ export const AppProvider: FunctionComponent<IProps> = ({ children }) => {
   const [usuario, setUsuario] = useState({
     username: "",
     password: "",
+    id: 0
   });
 
-  function saveUser(username: string, password: string) {
+  function saveUser(username: string, password: string, id: number) {
     setUsuario({
         username: username,
-        password: password
+        password: password,
+        id: id
     })
   }
 
@@ -39,6 +42,7 @@ export const AppProvider: FunctionComponent<IProps> = ({ children }) => {
         {
           username: usuario.username,
           password: usuario.password,
+          id: usuario.id,
           saveUser : saveUser
         } as IAppContext
       }

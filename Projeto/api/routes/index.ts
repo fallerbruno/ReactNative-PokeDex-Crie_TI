@@ -11,6 +11,7 @@ import routerMoves from './moves';
 import routerNatures from './nature';
 import routerTypes from './types';
 import routerMessage from './messages';
+import routerPokemonCanUseMove from './pokemonCanUseMove';
 const router = express.Router();
 
 // Auth middleware
@@ -57,5 +58,5 @@ router.use(routerNatures);
 router.use(routerTypes);
 router.use(routerPokemons);
 router.use(routerMessage);
-
+router.use(routerPokemonCanUseMove);
 export default router;

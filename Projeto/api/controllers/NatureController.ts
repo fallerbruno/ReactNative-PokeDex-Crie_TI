@@ -48,7 +48,7 @@ class NatureController {
   };
 
   _validateData = async (data: any, id?: any) => {
-    const attributes = ['name', 'description', 'accuracy', 'pp', 'condition'];
+    const attributes = ['name','statusUp','statusDown'];
     const nature: any = {};
 
     for (const attribute of attributes) {

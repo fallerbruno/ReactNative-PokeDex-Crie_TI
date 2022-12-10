@@ -1,13 +1,13 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '../db';
-import Pokemon from './Pokemon';
+import Move from './Move';
 
-class Type extends Model {
+class PokemonCanUseMove extends Model {
   declare id: number;
   declare name: string;
 };
 
-Type.init({
+PokemonCanUseMove.init({
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -20,12 +20,13 @@ Type.init({
   }
 }, {
   sequelize: db,
-  tableName: 'types',
-  modelName: 'Type'
+  tableName: 'pokemoncanusemove',
+  modelName: 'pokemoncanusemove'
 });
 
 
-Pokemon.hasMany(Type);
-Type.belongsTo(Pokemon);
+Move.hasMany(PokemonCanUseMove);
+PokemonCanUseMove.belongsTo(Move);
 
-export default Type;
+
+export default PokemonCanUseMove;

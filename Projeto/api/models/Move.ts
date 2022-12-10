@@ -23,18 +23,24 @@ Move.init(
       allowNull: false,
     },
     description: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     accuracy: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     pp: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    condition: {
+    effect_chance: {
+      type: DataTypes.STRING,
+    },
+    power: {
+      type: DataTypes.INTEGER,
+      
+    },
+    element: {
       type: DataTypes.STRING,
       allowNull: false,
     },
