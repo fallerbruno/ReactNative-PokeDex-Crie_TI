@@ -9,6 +9,7 @@ import InputSearch from '../components/InputSearch';
 import CustomButton from '../components/CustomButton';
 import { AntDesign } from '@expo/vector-icons';
 import { Modalize } from 'react-native-modalize';
+import Header from '../components/Header';
 
 const base64 = require('base-64');
 // import { Container } from './styles';
@@ -18,7 +19,7 @@ const ViewTrades = (props) => {
     const [pokemon, setPokemon] = useState([]);
     const [pokemonRegister, setPokemonRegister] = useState([]);
     const { username, password } = useContext(AppContext);
-
+    const [loading, setLoading] = useState(false);
     console.log('CREDENTIALS=>', username);
 
     //modalize
@@ -83,54 +84,60 @@ const ViewTrades = (props) => {
     }
 
     function RenderList({ item }) {
+        let pokemonName = item.name[0].toUpperCase() + item.name.substring(1)
         return (
             <TouchableOpacity onPress={() => CreatePokemon(item)}>
-                <Text style={[theme.cardText, { borderWidth: 1, borderRadius: 16, padding: 15, margin: 10 }]}>{item.name}</Text>
+                <Text style={[theme.cardText, { borderWidth: 1, borderRadius: 16, padding: 10, margin: 15, borderColor: "#005C53", backgroundColor: "#027373", color: "white" }]}>{pokemonName}</Text>
             </TouchableOpacity>
         )
     }
 
     function CreatePokemon(pokemon) {
         props.navigation.navigate("ViewCreatePokemon", {
-            pokemon: pokemon
+            pokemon: pokemon,
         });
     }
 
     return (
         <>
 
-
+            <Header label="TRADES" />
             <View style={[theme.container, theme.conintanerblack]}>
                 <FlatList
                     //ListHeaderComponent={}
                     //ItemSeparatorComponent={}
                     data={pokemon}
+                    onRefresh={() => ListPokemonsRegister()}
+                    refreshing={loading}
                     keyExtractor={item => item.id}
                     renderItem={RenderItem}
                     numColumns={1}
+
                 />
                 <FloatingButton onPress={() => toggleModal()} />
                 <Modal
                     keyboardAvoidingBehavior='height'
                     visible={isModalVisible}
+                    style={{ backgroundColor: "#5FCDD9" }}
                 >
-
-                    <TouchableOpacity
-                        onPress={() => toggleModal()}
-                        style={{ alignSelf: "flex-end", margin: 10 }}
-                    >
-                        <AntDesign name="closecircle" size={30} color="red" />
-                    </TouchableOpacity>
-                    <InputSearch setPokemon={setPokemonRegister} />
-
-                    <FlatList
-                        //ListHeaderComponent={}
-                        //ItemSeparatorComponent={}
-                        data={pokemonRegister}
-                        keyExtractor={item => item.id}
-                        renderItem={RenderList}
-                        numColumns={3}
-                    />
+                    <View style={theme.modal2}>
+                        <TouchableOpacity
+                            onPress={() => toggleModal()}
+                            style={{ alignSelf: "flex-end", margin: 10 }}
+                        >
+                            <AntDesign name="closecircle" size={30} color="red" style={{}} />
+                        </TouchableOpacity>
+                        <InputSearch setPokemon={setPokemonRegister} />
+                        <Text style={theme.PokemonNameModal}>SELECT A POKEMON TO CREATE</Text>
+                        <FlatList
+                            //ListHeaderComponent={}
+                            //ItemSeparatorComponent={}
+                            data={pokemonRegister}
+                            keyExtractor={item => item.id}
+                            renderItem={RenderList}
+                            numColumns={3}
+                        />
+                    </View>
 
                 </Modal>
             </View>

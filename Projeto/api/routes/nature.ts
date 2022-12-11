@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
 import NatureModel from '../models/Nature';
 import naturesController from '../controllers/NatureController';
+import AuthMiddleware from '../Middleware/AuthMiddleware';
+
 const routerNatures = express.Router();
 
 const validateCityId = async (req: Request, res: Response, next: any) => {
@@ -12,6 +14,9 @@ const validateCityId = async (req: Request, res: Response, next: any) => {
 
     next();
 }
+
+routerNatures.use(AuthMiddleware.authentication);
+
 
 routerNatures.post('/natures', naturesController.create);
 routerNatures.get('/natures', naturesController.index);

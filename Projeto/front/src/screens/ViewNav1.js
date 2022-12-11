@@ -3,43 +3,49 @@ import { View, StyleSheet, Image, TouchableOpacity, Text, Dimensions } from 'rea
 import CustomButton from '../components/CustomButton';
 import * as Animatable from 'react-native-animatable';
 import { theme } from '../styles/Theme';
+import Header from '../components/Header';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
 
 const ViewNav1 = (props) => {
-  
-  return (
-    <View style={[theme.container, theme.conintanerblack,{flexDirection: 'row', flexWrap: 'wrap'}]}>
-      <View style={{width: width*.48, padding: 16}} >
-        <TouchableOpacity onPress={() =>props.navigation.navigate("ViewDex")}>
 
-          <Image
-            style={{ width: 150, height: 150 }}
-            resizeMode='contain'
-            source={require('../assets/masterball.png')} />
+  return (
+
+
+    <View style={[theme.container, theme.conintanerblack, { flexDirection: 'row', flexWrap: 'wrap', }]}>
+      
+        <Header label="HOME" />
+  
+      <View style={{ padding: 16, flexDirection: "row", backgroundColor: "#91D8DF", width: width, marginBottom: 10, marginTop: 20 }} >
+        <TouchableOpacity onPress={() => props.navigation.navigate("ViewDex")} style={theme.menuItens}>
+          <MaterialCommunityIcons name="pokeball" size={50} color="black" />
           <Text style={theme.navtext}>POKEDEX</Text>
         </TouchableOpacity>
       </View>
-      <View style={{width: width*.48, padding: 16}} >
-        <TouchableOpacity onPress={() =>props.navigation.navigate("ViewTrades")}>
-          <Image
-            style={{ width: 150, height: 150 }}
-            resizeMode='contain'
-            source={require('../assets/masterball.png')} />
+
+      <View style={{ padding: 16, flexDirection: "row", backgroundColor: "#FF6568", width: width, marginBottom: 10, marginTop: 10  }} >
+        <TouchableOpacity onPress={() => props.navigation.navigate("ViewTrades")} style={[theme.menuItens,{backgroundColor: "#FF6568"}]}>
+        <MaterialCommunityIcons name="atom-variant" size={50} color="black" />
           <Text style={theme.navtext}>TRADES</Text>
         </TouchableOpacity>
       </View>
-      <View style={{width: width*.48, padding: 16}} >
-        <TouchableOpacity onPress={() =>props.navigation.navigate("ViewUsers")}>
-          <Image
-            style={{ width: 150, height: 150 }}
-            resizeMode='contain'
-            source={require('../assets/masterball.png')} />
+
+      <View style={{ padding: 16, flexDirection: "row", backgroundColor: "#8571BE", width: width, marginBottom: 10, marginTop: 10 }} >
+        <TouchableOpacity onPress={() => props.navigation.navigate("ViewUsers")} style={[theme.menuItens,{backgroundColor: "#8571BE"}]}>
+        <MaterialCommunityIcons name="account-group" size={50} color="black" />
           <Text style={theme.navtext}>USERS</Text>
         </TouchableOpacity>
       </View>
+      <View style={{ padding: 16, flexDirection: "row", backgroundColor: "#F78551", width: width, marginBottom: 10, marginTop: 10 }} >
+      <TouchableOpacity onPress={() => props.navigation.navigate("ViewMyProfile")} style={[theme.menuItens,{backgroundColor: "#F78551"}]}>
+      <MaterialCommunityIcons name="shield-account" size={50} color="black" />
+        <Text style={theme.navtext}>MY PROFILE</Text>
+      </TouchableOpacity>
+      </View>
     </View>
+
   );
 }
 

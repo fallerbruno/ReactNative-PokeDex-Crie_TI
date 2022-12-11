@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import PokemonCanUseMoveModel from '../models/PokemonCanUseMove';
 import PokemonCanUseMoveController from '../controllers/PokemonCanUseMove';
+import AuthMiddleware from '../Middleware/AuthMiddleware';
 const routerPokemonCanUseMove = express.Router();
 
 const validateStateId = async (req: Request, res: Response, next: any) => {
@@ -12,6 +13,9 @@ const validateStateId = async (req: Request, res: Response, next: any) => {
 
     next();
 }
+
+routerPokemonCanUseMove.use(AuthMiddleware.authentication);
+
 
 routerPokemonCanUseMove.post('/pokemonCanUseMove', PokemonCanUseMoveController.create);
 routerPokemonCanUseMove.get('/pokemonCanUseMove', PokemonCanUseMoveController.index);

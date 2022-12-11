@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
 import UserModel from '../models/User';
 import usersController from '../controllers/UsersController';
+import AuthMiddleware from '../Middleware/AuthMiddleware';
+
 const routerUsers = express.Router();
 
 const validateUserId = async (req: Request, res: Response, next: any) => {
@@ -15,8 +17,8 @@ const validateUserId = async (req: Request, res: Response, next: any) => {
 
 routerUsers.get('/users', usersController.index);
 routerUsers.post('/users', usersController.create);
-routerUsers.get('/users/:userId', validateUserId, usersController.show);
+routerUsers.get('/users/:userId',AuthMiddleware.authentication, validateUserId, usersController.show);
 routerUsers.put('/users/:userId', validateUserId, usersController.update);
-routerUsers.delete('/users/:userId', validateUserId, usersController.delete);
+routerUsers.delete('/users/:userId',AuthMiddleware.authentication, validateUserId, usersController.delete);
 
 export default routerUsers;

@@ -93,13 +93,13 @@ export default ViewUsers = ({ navigation }) => {
 
     function RenderItem({ item }) {
         const icone_sexo = item.sex == 'M' ? 'man' : 'woman';
-
+        const background = item.sex == 'M' ? '#83A2E3' : '#EBA8C3';
         return <TouchableOpacity
             activeOpacity={0.6}
-            style={[styles.card, theme.shadows]} key={item.id} onPress={() => alterUser(item)}>
+            style={[styles.card, theme.shadows, {backgroundColor: background}] } key={item.id} onPress={() => alterUser(item)}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <AntDesign name={icone_sexo} size={24}
-                    color={item.sex == 'M' ? "#7986CB" : "#F06292"}
+                    color={item.sex == 'M' ? "#427CF5" : "#F06292"}
                     style={{ marginRight: 16 }} />
                 <View>
                     <Text style={styles.titleCard}>{item.name}</Text>
@@ -112,7 +112,7 @@ export default ViewUsers = ({ navigation }) => {
 
 
     return (
-        <View style={theme.container}>
+        <View style={theme.modal2}>
             {/* <SkeletonPlaceholder
                 speed={600}>
                 <SkeletonPlaceholder.Item
@@ -126,73 +126,6 @@ export default ViewUsers = ({ navigation }) => {
                 keyExtractor={item => item.id}
                 renderItem={RenderItem}
             />
-
-            <FloatingButton onPress={() => newUser()} />
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={styles.container}>
-
-                <Modalize
-                    keyboardAvoidingBehavior='height'
-                    ref={modalRef}
-                    snapPoint={500}
-                    height={400}
-                >
-                    <View style={theme.modal}>
-                        <Text style={theme.title}>{user.id > 0 ? "Alterar Usuario" : "Criar Usuario"}</Text>
-                        <Text>Nome</Text>
-                        <TextInput
-
-                            keyboardType='ascii-capable'
-                            autoCapitalize='none'
-                            value={user.name}
-                            onChangeText={(value) => setUser({ ...user, name: value })}
-                            style={theme.input}
-                            placeholder="Name" />
-                        <Text>Email</Text>
-                        <TextInput
-                            keyboardType='email-address'
-                            autoCapitalize='none'
-                            value={user.email}
-                            onChangeText={(value) => setUser({ ...user, email: value })}
-                            style={theme.input}
-                            placeholder="Email" />
-                        <Text>Senha</Text>
-                        <TextInput
-                            secureTextEntry={true}
-                            keyboardType='password'
-                            autoCapitalize='none'
-                            value={user.password}
-                            onChangeText={(value) => setUser({ ...user, password: value })}
-                            style={theme.input}
-                            placeholder="Password" />
-                        <View style={{ flexDirection: 'row', justifyContent: "space-between" }}>
-                            <View style={{ flex: 1 }}>
-                                <Text>Idade</Text>
-                                <TextInput
-                                    keyboardType='decimal-pad'
-                                    autoCapitalize='none'
-                                    value={user.age} onChangeText={(value) => setUser({ ...user, age: value })}
-                                    style={[theme.input, { width: "40%" }]}
-                                    placeholder="Age" />
-                            </View>
-                            <View style={{ flex: 1 }}>
-                                <Text>Sexo (M ou F)</Text>
-                                <ScrollView horizontal={true} >
-                                    <TouchableOpacity onPress={() => setUser({ ...user, sex: "M" })}>
-                                        <Ionicons name="md-man-sharp" size={40} color={user.sex == "M" ? "blue" : "gray"} />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => setUser({ ...user, sex: "F" })}>
-                                        <Ionicons name="md-woman" size={40} color={user.sex == "F" ? "pink" : "gray"} />
-                                    </TouchableOpacity>
-                                </ScrollView>
-                            </View>
-                        </View>
-                        <CustomButton label="salvar" backgroundColor="blue" textColor="white" style={theme.button} onPress={saveUser} />
-                    </View>
-
-                </Modalize>
-            </KeyboardAvoidingView>
         </View>
     );
 }
@@ -203,7 +136,6 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         padding: 8,
         height: 55,
-        backgroundColor: '#f1f1f1',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'

@@ -8,6 +8,8 @@ import { AppContext } from '../context/AppContext';
 import { theme } from '../styles/Theme';
 import { Modalize } from 'react-native-modalize';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
+import RnGH from 'react-native-gesture-handler';
+import Header from '../components/Header';
 const base64 = require('base-64');
 // import { Container } from './styles';
 
@@ -15,23 +17,21 @@ const ViewDex = () => {
     const [loading, setLoading] = useState(false);
     const [pokemon, setPokemon] = useState([]);
     const { username, password } = useContext(AppContext);
-    
+
     console.log('CREDENTIALS=>', username);
 
     //modalize
 
-    const modalRef = useRef(null)
+    const modalA = useRef(null);
+    const [modalAOpen, setModalAOpen] = useState(false);
 
     function onOpenModal() {
 
-        if (modalRef != null) {
-
-            modalRef.current?.open();
+        if (modalAOpen) {
+            modalA.current?.close();
+        } else {
+            modalA.current?.open();
         }
-    }
-
-    function onCloseModal() {
-        modalRef.current?.close()
     }
 
     //efect para renderizar eles na tela
@@ -71,7 +71,7 @@ const ViewDex = () => {
     return (
         <>
 
-
+            <Header label="POKEDEX" />
             <View style={[theme.container, theme.conintanerblack]}>
                 <FlatList
                     //ListHeaderComponent={}
@@ -83,13 +83,16 @@ const ViewDex = () => {
                 />
                 <FloatingButtonSearch onPress={onOpenModal} />
                 <Modalize
+                    ref={modalA}
+                    onOpen={() => setModalAOpen(true)}
+                    onClose={() => setModalAOpen(false)}
                     keyboardAvoidingBehavior='height'
-                    ref={modalRef}
-                    snapPoint={200}
-                    height={200}
-                    modalStyle={theme.modal}
+
+                    snapPoint={180}
+                    height={180}
+                    modalStyle={[theme.modal, { paddingTop: 20 }]}
                 >
-                    <InputSearch setPokemon={setPokemon} />
+                    <InputSearch setPokemon={setPokemon} onOpenModal={() => onOpenModal()} />
                 </Modalize>
             </View>
 

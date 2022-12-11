@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import MovesModel from '../models/Message';
 import movesController from '../controllers/MessageController';
+import AuthMiddleware from '../Middleware/AuthMiddleware';
 const routerMessage = express.Router();
 
 const validateStateId = async (req: Request, res: Response, next: any) => {
@@ -12,6 +13,9 @@ const validateStateId = async (req: Request, res: Response, next: any) => {
 
     next();
 }
+
+routerMessage.use(AuthMiddleware.authentication);
+
 
 routerMessage.post('/message', movesController.create);
 routerMessage.get('/message', movesController.index);

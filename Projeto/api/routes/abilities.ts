@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import AbilityModel from '../models/Ability';
 import AbilityController from '../controllers/AbilityController';
+import AuthMiddleware from  '../Middleware/AuthMiddleware'
 const routerAbilities = express.Router();
 
 const validateCityId = async (req: Request, res: Response, next: any) => {
@@ -12,6 +13,8 @@ const validateCityId = async (req: Request, res: Response, next: any) => {
 
     next();
 }
+
+routerAbilities.use(AuthMiddleware.authentication);
 
 routerAbilities.post('/abilities', AbilityController.create);
 routerAbilities.get('/abilities', AbilityController.index);

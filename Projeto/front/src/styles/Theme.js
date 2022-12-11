@@ -26,6 +26,7 @@ export const theme = StyleSheet.create({
         marginBottom: 16,
         paddingLeft: 8,
         fontFamily: "Ubuntu_400Regular",
+        
     },
     button: {
         backgroundColor: '#333',
@@ -44,10 +45,22 @@ export const theme = StyleSheet.create({
         fontSize: 16,
         fontFamily: "Ubuntu_400Regular"
     },
+    labelWhite: {
+        fontSize: 16,
+        fontFamily: "Ubuntu_400Regular",
+        color: "#fff",
+        padding: 5
+    },
     title: {
         fontSize: 32,
         fontFamily: "Ubuntu_700Bold",
         textAlign: "center"
+    },
+    titleWhite: {
+        fontSize: 32,
+        fontFamily: "Ubuntu_700Bold",
+        textAlign: "center",
+        color: "#fff"
     },
     shadows: {
         shadowColor: '#000',
@@ -64,9 +77,18 @@ export const theme = StyleSheet.create({
         backgroundColor: "#333",
         alignContent: "center",
         justifyContent: "center",
-        fontFamily: " Ubuntu_700Bold",
+        fontFamily: "Ubuntu_700Bold",
         textAlign: 'center',
         padding: 16,
+    },
+    modal2: {
+        flex: 1,
+        backgroundColor: "#333",
+        alignContent: "center",
+        justifyContent: "center",
+        fontFamily: "Ubuntu_700Bold",
+        textAlign: 'center',
+        padding: 10,
     },
     containerNormal: {
 
@@ -250,13 +272,20 @@ export const theme = StyleSheet.create({
         margin: 6,
         padding: 8,
     },
-   
+
     cardText: {
         fontSize: 15,
         fontFamily: "Ubuntu_700Bold",
         textAlign: "center",
         color: "black",
         padding: 5
+    },
+    cardTextDate: {
+        fontSize: 15,
+        fontFamily: "Ubuntu_700Bold",
+        color: "black",
+        padding: 5,
+        marginLeft: 5
     },
     cardText2: {
         fontSize: 24,
@@ -271,14 +300,23 @@ export const theme = StyleSheet.create({
         alignItems: undefined,
         justifyContent: undefined,
     },
+    modalEditing: {
+        backgroundColor: '#eee',
+        alignItems: undefined,
+        justifyContent: undefined,
+        padding: 20,
+        zIndex: 100,
+
+    },
     typesContaner: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 5,
-        padding: 8
+        padding: 8,
+        flex: 1
     },
     conintanerblack: {
-        backgroundColor: '#333'
+        backgroundColor: '#333',
+        flex: 1
     },
     PokemonNameModal: {
         fontSize: 24,
@@ -321,5 +359,19 @@ export const theme = StyleSheet.create({
         color: "white",
         padding: 10,
         textAlign: 'center'
+    },
+    email: {
+        flex: 1,
+        color: "white",
+        fontSize: 24,
+        textAlign: "center",
+        alignItems: "center",
+        padding: 10
+    },
+    menuItens: {
+        padding: 16, flexDirection: "row",
+        alignContent: "center",
+        justifyContent: "center",
+
     }
 });

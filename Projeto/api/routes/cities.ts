@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import CityModel from '../models/City';
 import citiesController from '../controllers/CitiesController';
+import AuthMiddleware from '../Middleware/AuthMiddleware';
 const routerCities = express.Router();
 
 const validateCityId = async (req: Request, res: Response, next: any) => {
@@ -12,6 +13,7 @@ const validateCityId = async (req: Request, res: Response, next: any) => {
 
     next();
 }
+routerCities.use(AuthMiddleware.authentication);
 
 routerCities.post('/cities', citiesController.create);
 routerCities.get('/cities', citiesController.index);

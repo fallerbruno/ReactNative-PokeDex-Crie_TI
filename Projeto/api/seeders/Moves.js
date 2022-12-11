@@ -44,30 +44,30 @@ async function getAllPokemons() {
                     });
         });
 
-        // axios('http://177.44.248.33:3000/moves', {
-        //     method: 'post',
-        //     headers: {
-        //         'Authorization': 'Basic ' +
-        //             base64.encode('admin@admin.com' + ":" + 'admin')
-        //     },
-        //     data: {
-        //         name: move.name,
-        //         description: move.flavor_text_entries[0].flavor_text,
-        //         accuracy: accuracy,
-        //         pp: move.pp,
-        //         effect_chance: move.effect_chance,
-        //         power: power,
-        //         typeId: 1,
-        //         element: move.type.name
-        //     }
+    //     axios('http://177.44.248.33:3000/moves', {
+    //         method: 'post',
+    //         headers: {
+    //             'Authorization': 'Basic ' +
+    //                 base64.encode('admin@admin.com' + ":" + 'admin')
+    //         },
+    //         data: {
+    //             name: move.name,
+    //             description: move.flavor_text_entries[0].flavor_text,
+    //             accuracy: accuracy,
+    //             pp: move.pp,
+    //             effect_chance: move.effect_chance,
+    //             power: power,
+    //             typeId: 1,
+    //             element: move.type.name
+    //         }
 
-        // })
-        //     .then(function (response) {
-        //         console.log(response)
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-    }
+    //     })
+    //         .then(function (response) {
+    //             console.log(response)
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+     }
 }
 getAllPokemons();

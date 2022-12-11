@@ -6,7 +6,7 @@ import { theme } from '../styles/Theme';
 import CustomButton from './CustomButton';
 const base64 = require('base-64');
 
-const InputSearch = ({ value, setPokemon }) => {
+const InputSearch = ({ value, setPokemon, onOpenModal }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const [search, setSearch] = useState({
@@ -37,9 +37,9 @@ const InputSearch = ({ value, setPokemon }) => {
     const json = await response.json();
     setLoading(false);
     if (json) {
-      console.log(json);
       setPokemon(json);
       setSearch('');
+      onOpenModal()
     } else {
       Alert.alert('Ops, deu ruim 😥', json.message);
      
@@ -57,8 +57,9 @@ const InputSearch = ({ value, setPokemon }) => {
     const json = await response.json();
     setLoading(false);
     if (json) {
-      console.log(json);
+      
       setPokemon(json);
+      onOpenModal()
  
     } else {
       Alert.alert('Ops, deu ruim 😥', json.message);
@@ -67,9 +68,9 @@ const InputSearch = ({ value, setPokemon }) => {
 
 
   return (
-    <View isFocused={isFocused}>
+    <View isFocused={isFocused} style={{paddingLeft: 20, paddingRight: 20, height: "20%", backgroundColor:"#333" }}>
       <TextInput
-        placeholder={isFocused ? '' : 'Qual Pokémon você está procurando?'}
+        placeholder={isFocused ? '' : "Catch'a Your Pokemon"}
         value={search}
         onChangeText={(value) => setSearch({ ...search, search: value })}
         style={theme.inputModal}
@@ -87,7 +88,9 @@ const InputSearch = ({ value, setPokemon }) => {
           backgroundColor="#02A2E6"
           textColor="#000"
           width="48%" />
+          
       </View>
+     
     </View >
   );
 };

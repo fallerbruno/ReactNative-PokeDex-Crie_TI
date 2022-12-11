@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import TypesModel from '../models/Type';
 import typesController from '../controllers/TypeController';
+import AuthMiddleware from '../Middleware/AuthMiddleware';
 const routerTypes= express.Router();
 
 const validateStateId = async (req: Request, res: Response, next: any) => {
@@ -12,6 +13,9 @@ const validateStateId = async (req: Request, res: Response, next: any) => {
 
     next();
 }
+
+routerTypes.use(AuthMiddleware.authentication);
+
 
 routerTypes.post('/types', typesController.create);
 routerTypes.get('/types', typesController.index);

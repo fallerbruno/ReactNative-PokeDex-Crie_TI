@@ -4,15 +4,20 @@ import {
   ReactElement,
   useState,
 } from "react";
+
 interface IProps {
   children: ReactElement;
 }
+
 export interface IAppContext {
   username: string;
   password: string;
   id: number;
+  age: number;
+  sex: string;
+
   //passa a funcao de salvar usuario
-  saveUser: (username: string, password: string, id: number) => void;
+  saveUser: (username: string, password: string, id: number, age: number, sex: string) => void;
 }
 
 /*exportação para utilização nas telas em que as informações
@@ -24,14 +29,18 @@ export const AppProvider: FunctionComponent<IProps> = ({ children }) => {
   const [usuario, setUsuario] = useState({
     username: "",
     password: "",
-    id: 0
+    id: 0,
+    sex: "",
+    age: 0,
   });
 
-  function saveUser(username: string, password: string, id: number) {
+  function saveUser(username: string, password: string, id: number, age: number, sex: string) {
     setUsuario({
         username: username,
         password: password,
-        id: id
+        id: id,
+        age: age,
+        sex: sex,
     })
   }
 
@@ -43,10 +52,13 @@ export const AppProvider: FunctionComponent<IProps> = ({ children }) => {
           username: usuario.username,
           password: usuario.password,
           id: usuario.id,
+          age: usuario.age,
+          sex: usuario.sex,
           saveUser : saveUser
         } as IAppContext
       }
     >
+      
       {children}
     </AppContext.Provider>
   );

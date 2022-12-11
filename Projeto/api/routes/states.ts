@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import StateModel from '../models/State';
 import statesController from '../controllers/StatesController';
+import AuthMiddleware from '../Middleware/AuthMiddleware';
 const routerStates = express.Router();
 
 const validateStateId = async (req: Request, res: Response, next: any) => {
@@ -12,6 +13,9 @@ const validateStateId = async (req: Request, res: Response, next: any) => {
 
     next();
 }
+
+routerStates.use(AuthMiddleware.authentication);
+
 
 routerStates.post('/states', statesController.create);
 routerStates.get('/states', statesController.index);

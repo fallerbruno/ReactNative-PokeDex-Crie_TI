@@ -1,7 +1,8 @@
 import { Op } from "sequelize";
 import { Request, Response, NextFunction } from "express";
 import PokemonModel from "../models/PokemonRegister";
-
+import Nature from "../models/Nature";
+import User from "../models/User";
 class PokemonRegisterController {
   index = async (req: Request, res: Response) => {
     const params = req.query;
@@ -22,6 +23,10 @@ class PokemonRegisterController {
       where.sex = params.sex;
     }
 
+    if (params.UserId) {
+      where.UserId = params.UserId;
+    }
+
     if (params.shiny) {
       where.shiny = params.shiny;
     }
@@ -31,6 +36,16 @@ class PokemonRegisterController {
       limit: limit,
       offset: offset,
       order: [[sort, order]],
+      include: [{
+        model: Nature,
+        required: false,
+        attributes: ['name'],
+      },
+      {
+        model: User,
+        required: false,
+        attributes: ['email'],
+      }]
     });
     res.json(pokemon);
   };
@@ -54,7 +69,7 @@ class PokemonRegisterController {
   update = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = req.params.pokemonId;
-      const data = await this._validateData(req.body, id);
+      const data = await req.body
       await PokemonModel.update(data, {
         where: {
           id: id,
@@ -77,10 +92,10 @@ class PokemonRegisterController {
 
   _validateData = async (data: any, id?: any) => {
     const attributes = ["name", "description", "sex", "shiny", "type1", "type2", "species", "ability",
-      "move1", "move2", "move3", "move4", "hp", "def", "spdef", "spatk", "speed", "atk"];
+      "move1", "move2", "move3", "move4", "hp", "def", "spdef", "spatk", "speed", "atk", "UserId", "NatureId"];
     const pokemon: any = {};
     console.log(data);
-    
+
     for (const attribute of attributes) {
       if (!data[attribute]) {
         throw new Error(`The attribute "${attribute}" is required.`);

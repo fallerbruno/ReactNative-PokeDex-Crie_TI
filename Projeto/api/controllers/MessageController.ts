@@ -54,7 +54,7 @@ class MessageController {
 
   create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const data = await this._validateData(req.body);
+      const data = await req.body
       const message = await MessageModel.create(data);
       res.json(message);
     } catch (error: any) {
@@ -92,7 +92,7 @@ class MessageController {
   };
 
   _validateData = async (data: any, id?: any) => {
-    const attributes = ["subject", "read", "message"];
+    const attributes = ["subject", "read", "message", "senderId", "recipientId"];
     const message: any = {};
 
     for (const attribute of attributes) {

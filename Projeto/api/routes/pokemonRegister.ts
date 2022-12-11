@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import PokemonModel from '../models/PokemonRegister';
 import pokemonsController from '../controllers/PokemonRegisterController';
+import AuthMiddleware from '../Middleware/AuthMiddleware';
 const routerPokemonsRegister = express.Router();
 
 const validateStateId = async (req: Request, res: Response, next: any) => {
@@ -12,6 +13,9 @@ const validateStateId = async (req: Request, res: Response, next: any) => {
 
     next();
 }
+
+routerPokemonsRegister.use(AuthMiddleware.authentication);
+
 
 routerPokemonsRegister.post('/pokemonsRegister', pokemonsController.create);
 routerPokemonsRegister.get('/pokemonsRegister', pokemonsController.index);
