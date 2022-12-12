@@ -88,7 +88,7 @@ const ViewDex = () => {
                     onClose={() => setModalAOpen(false)}
                     keyboardAvoidingBehavior='height'
 
-                    snapPoint={180}
+                    snapPoint={250}
                     height={180}
                     modalStyle={[theme.modal, { paddingTop: 20 }]}
                 >

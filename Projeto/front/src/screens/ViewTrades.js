@@ -18,7 +18,7 @@ const ViewTrades = (props) => {
     const { width, height } = Dimensions.get('window');
     const [pokemon, setPokemon] = useState([]);
     const [pokemonRegister, setPokemonRegister] = useState([]);
-    const { username, password } = useContext(AppContext);
+    const { username, password, id } = useContext(AppContext);
     const [loading, setLoading] = useState(false);
     console.log('CREDENTIALS=>', username);
 
@@ -54,6 +54,8 @@ const ViewTrades = (props) => {
             Alert.alert('Ops, deu ruim 😥', json.message);
         }
     }
+
+
 
     useEffect(() => {
         ListPokemons();

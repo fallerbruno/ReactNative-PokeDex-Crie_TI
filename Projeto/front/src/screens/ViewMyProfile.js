@@ -21,8 +21,17 @@ const ViewMyProfile = ({ navigation, route }) => {
     const [pokemon, setPokemon] = useState([]);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({})
+    const [seconds, setSeconds] = useState(0);
 
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+          ListPokemons()
+          setSeconds(seconds => seconds + 1);
+        }, 1000);
+        return () => clearInterval(interval);
+      }, []);
+    
 
     function saveUser() {
         const data = {
@@ -49,9 +58,11 @@ const ViewMyProfile = ({ navigation, route }) => {
 
     const modalA = useRef(null);
     const modalB = useRef(null);
-
+    
     const [modalAOpen, setModalAOpen] = useState(false);
     const [modalBOpen, setModalBOpen] = useState(false);
+
+  
 
     function onOpenModalA() {
         if (modalAOpen) {
@@ -68,11 +79,9 @@ const ViewMyProfile = ({ navigation, route }) => {
             modalB.current?.open();
         }
     }
-
-
+   
     useEffect(() => {
         listUsers();
-
     }, [])
 
     async function listUsers() {
@@ -129,6 +138,7 @@ const ViewMyProfile = ({ navigation, route }) => {
         <H2>COPYRIGHT: POKEDEX FALLER</H2>
         </body>
         </html>`;
+
     let generatePdf = async () => {
         const file = await printToFileAsync({
             html: html,
@@ -137,6 +147,8 @@ const ViewMyProfile = ({ navigation, route }) => {
 
         await shareAsync(file.uri);
     };
+
+
 
     useEffect(() => {
         ListPokemons();
@@ -166,8 +178,22 @@ const ViewMyProfile = ({ navigation, route }) => {
     function RenderItem({ item }) {
         return <CardPokemonUser {...item} render={() => ListPokemons()} />
     }
+    function logout(){
+        navigation.reset({
+            index: 0,
+            routes: [{ name: "ViewNewLogin" }]})
+    }
 
+    function onRefresh(){
+        setLoading(true)
+        ListPokemons()
+        setLoading(false)
 
+    }
+
+    useEffect(() => {
+        ListPokemons();
+    }, [])
 
 
     return (
@@ -190,6 +216,12 @@ const ViewMyProfile = ({ navigation, route }) => {
                         <FontAwesome name="file-pdf-o" size={30} color="#FFA756" />
                     </View>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => logout()}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                        <Text style={theme.labelWhite}>LOGOUT</Text>
+                        <FontAwesome name="sign-out" size={30} color="#E281EB" />
+                    </View>
+                </TouchableOpacity>
             </View>
 
             <View style={[theme.container, theme.conintanerblack]}>
@@ -199,7 +231,7 @@ const ViewMyProfile = ({ navigation, route }) => {
                     //ListHeaderComponent={}
                     //ItemSeparatorComponent={}
                     data={pokemon}
-                    onRefresh={() => ListPokemons()}
+                    onRefresh={() => onRefresh()}
                     refreshing={loading}
                     keyExtractor={item => item.id}
                     renderItem={RenderItem}

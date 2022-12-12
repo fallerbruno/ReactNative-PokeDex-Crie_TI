@@ -25,7 +25,7 @@ const ViewMessages = () => {
     recipentName: ""
 
   })
-  console.log(id)
+  const [seconds, setSeconds] = useState(0);
   const [loading, setLoading] = useState(false);
   const modalA = useRef(null);
   const modalB = useRef(null);
@@ -61,7 +61,7 @@ const ViewMessages = () => {
 
   useEffect(() => {
     MessagesSend()
-  },[])
+  }, [])
 
   async function MessagesSend() {
     const response = await fetch(`http://177.44.248.33:3000/message?senderId=${id}`, {
@@ -71,6 +71,7 @@ const ViewMessages = () => {
           base64.encode(username + ":" + password)
       }
     });
+
     const json = await response.json();
 
 
@@ -83,8 +84,17 @@ const ViewMessages = () => {
   }
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      MessagesReciped()
+      setSeconds(seconds => seconds + 1);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+
+  useEffect(() => {
     MessagesReciped()
-  },[] )
+  }, [])
 
   async function MessagesReciped() {
     const response = await fetch(`http://177.44.248.33:3000/message?recipientId=${id}`, {
@@ -148,13 +158,16 @@ const ViewMessages = () => {
 
     })
       .then(function (response) {
+        
         setNewMessage(subject = "",
           message = "",
           read = false,
           senderId = id,
           recipentId = 0,
           recipentName = "")
+
         onOpenModalC()
+
       })
       .catch(function (error) {
         console.log(error);
@@ -187,11 +200,11 @@ const ViewMessages = () => {
   return (
     <>
       <Header label="Messages" />
-      <View style={[theme.container, theme.conintanerblack, {padding: 10}]}>
+      <View style={[theme.container, theme.conintanerblack, { padding: 10 }]}>
         <CustomButton
           onPress={() => onOpenModalA()}
           width="100%"
-          label="Sended Messages"
+          label="Sent Messages"
           backgroundColor="#9F6E97"
         />
         <CustomButton

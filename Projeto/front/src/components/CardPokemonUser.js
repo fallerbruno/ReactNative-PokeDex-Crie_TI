@@ -92,13 +92,13 @@ const CardPokemonUser = (pokemon, render, props) => {
                             style={{ width: width * .3, height: height * .12, alignSelf: "center", backgroundColor: colorsByTypeTag(pokemon.type1), borderRadius: 16, marginTop: 12 }}
                             source={{
 
-                                uri: pokemona.sprite
+                                uri: pokemona.spriteShiny
                             }} />
                         :
                         <Image
                             style={{ width: width * .3, height: height * .12, alignSelf: "center", backgroundColor: colorsByTypeTag(pokemon.type1), borderRadius: 16, marginTop: 12 }}
                             source={{
-                                uri: pokemona.spriteShiny
+                                uri: pokemona.sprite
                             }} />
                     }
                     {pokemon.type2 ?
@@ -135,13 +135,13 @@ const CardPokemonUser = (pokemon, render, props) => {
                                     style={{ width: width * .75, height: height * .35, alignSelf: "center" }}
                                     source={{
 
-                                        uri: pokemona.sprite
+                                        uri: pokemona.spriteShiny
                                     }} />
                                 :
                                 <Image
                                     style={{ width: width * .75, height: height * .35, alignSelf: "center" }}
                                     source={{
-                                        uri: pokemona.spriteShiny
+                                        uri: pokemona.sprite
                                     }} />
                             }
                         </View>

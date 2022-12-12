@@ -15,15 +15,22 @@ const Header = ({ label }) => {
             routes: [{ name: "ViewNewLogin" }]})
     }
 
+    function back() {
+        navigation.goBack()
+    }
+
     return (
         <View style={styles.header}>
             <TouchableOpacity onPress={() => navigation.navigate('ViewNav1')} activeOpacity={0.6}>
                 <FontAwesome name="home" size={60} color="#FFEF82" />
             </TouchableOpacity>
             <Text style={theme.titleWhite}> {label} </Text>
-            <TouchableOpacity onPress={logout} activeOpacity={0.6}>
-                <FontAwesome name="sign-out" size={60} color="#E281EB" />
+            <View style={{justifyContent: "space-around"}}>
+           
+            <TouchableOpacity onPress={back} activeOpacity={0.6}>
+                <FontAwesome name="arrow-right" size={60} color="#E281EB" />
             </TouchableOpacity>
+            </View>
         </View>
     );
 }

@@ -125,7 +125,7 @@ const CardPokemonRegister = (pokemon) => {
                     <Text style={[theme.cardText2]}>{pokemonName}</Text>
                     {pokemon.type2 ?
                         <View style={[theme.typesContaner]}>
-                            <Text style={[colorsByType(pokemon.type1), theme.cardText,{marginRight: -35}]}>{pokemon.type1[0].toUpperCase() + pokemon.type1.substring(1)}</Text>
+                            <Text style={[colorsByType(pokemon.type1), theme.cardText, { marginRight: -35 }]}>{pokemon.type1[0].toUpperCase() + pokemon.type1.substring(1)}</Text>
                             <Text style={[colorsByType(pokemon.type2), theme.cardText]}>{pokemon.type2[0].toUpperCase() + pokemon.type2.substring(1)}</Text>
                             <TouchableOpacity onPress={() => sendEmail()} style={{ alignSelf: "flex-end" }}>
                                 <MaterialIcons name="email" size={30} color="#005C53" />
@@ -157,13 +157,13 @@ const CardPokemonRegister = (pokemon) => {
                         style={{ width: width * .3, height: height * .12, alignSelf: "center", backgroundColor: colorsByTypeTag(pokemon.type1), borderRadius: 16, marginTop: 12 }}
                         source={{
 
-                            uri: pokemonCapture.sprite
+                            uri: pokemonCapture.spriteShiny
                         }} />
                     :
                     <Image
                         style={{ width: width * .3, height: height * .12, alignSelf: "center", backgroundColor: colorsByTypeTag(pokemon.type1), borderRadius: 16, marginTop: 12 }}
                         source={{
-                            uri: pokemonCapture.spriteShiny
+                            uri: pokemonCapture.sprite
                         }} />
                 }
 
@@ -173,21 +173,21 @@ const CardPokemonRegister = (pokemon) => {
             <View style={{ flex: 1 }}>
                 <Modal isVisible={isModalVisible}>
 
-                    <View style={[theme.modal, {height: "100%", borderRadius: 16}]}>
-                        <View style={[theme.modal, { backgroundColor: colorsByTypeTag(pokemon.type1), height: height * .40, borderRadius: 16}]}>
+                    <View style={[theme.modal, { height: "100%", borderRadius: 16 }]}>
+                        <View style={[theme.modal, { backgroundColor: colorsByTypeTag(pokemon.type1), height: height * .40, borderRadius: 16 }]}>
                             <Text style={theme.PokemonIdModal}>#{pokemon.id}</Text>
                             {pokemon.shiny ?
                                 <Image
                                     style={{ width: width * .75, height: height * .35, alignSelf: "center" }}
                                     source={{
 
-                                        uri: pokemonCapture.sprite
+                                        uri: pokemonCapture.spriteShiny
                                     }} />
                                 :
                                 <Image
                                     style={{ width: width * .75, height: height * .35, alignSelf: "center" }}
                                     source={{
-                                        uri: pokemonCapture.spriteShiny
+                                        uri: pokemonCapture.sprite
                                     }} />
                             }
                         </View>

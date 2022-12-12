@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-
+import { LogBox } from 'react-native';
 
 import ViewNav1 from "./src/screens/ViewNav1";
 import ViewUsers from "./src/screens/ViewUsers";
@@ -32,7 +32,7 @@ import ViewEditingPokemon from "./src/screens/ViewEditingPokemon";
 import ViewMessages from "./src/screens/ViewMessages";
 
 const Stack = createNativeStackNavigator();
-
+LogBox.ignoreAllLogs();
 export default function App() {
 
   const [fontsLoaded] = useFonts({

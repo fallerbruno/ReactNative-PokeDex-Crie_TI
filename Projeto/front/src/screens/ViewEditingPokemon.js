@@ -100,7 +100,9 @@ const ViewEditingPokemon = ({ navigation, route }) => {
         })
             .then(function (response) {
                 
-                navigation.navigate("ViewMyProfile")
+                navigation.navigate("ViewMyProfile", {
+                    refresh : true
+                })
 
             })
             .catch(function (error) {
