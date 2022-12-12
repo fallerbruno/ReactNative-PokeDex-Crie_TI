@@ -14,7 +14,7 @@ const validateStateId = async (req: Request, res: Response, next: any) => {
     next();
 }
 
-routerMessage.use(AuthMiddleware.authentication);
+
 
 
 routerMessage.post('/message', movesController.create);

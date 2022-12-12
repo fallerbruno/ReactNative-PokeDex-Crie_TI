@@ -29,6 +29,7 @@ import ViewCreatePokemon from "./src/screens/ViewCreatePokemon";
 import ViewCreateUser from "./src/screens/ViewCreateUser";
 import ViewMyProfile from "./src/screens/ViewMyProfile";
 import ViewEditingPokemon from "./src/screens/ViewEditingPokemon";
+import ViewMessages from "./src/screens/ViewMessages";
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +63,7 @@ export default function App() {
               <Stack.Screen name="ViewCreateUser" component={ViewCreateUser} />
               <Stack.Screen name="ViewMyProfile" component={ViewMyProfile} />
               <Stack.Screen name="ViewEditingPokemon" component={ViewEditingPokemon} />
+              <Stack.Screen name="ViewMessages" component={ViewMessages} />
             </Stack.Navigator>
           </NavigationContainer>
 

@@ -13,12 +13,16 @@ import { Modalize } from 'react-native-modalize';
 import RnGH from 'react-native-gesture-handler';
 import Header from '../components/Header';
 const { useState, useEffect } = React;
+import { printToFileAsync } from 'expo-print';
+import { shareAsync } from 'expo-sharing';
 
 const ViewMyProfile = ({ navigation, route }) => {
     const { username, password, id, age, sex } = useContext(AppContext);
     const [pokemon, setPokemon] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({})
+
+
 
     function saveUser() {
         const data = {
@@ -75,7 +79,7 @@ const ViewMyProfile = ({ navigation, route }) => {
 
         setLoading(true);
 
-        const response = await fetch(`http://177.44.248.33:3000/users/${1}`, {
+        const response = await fetch(`http://177.44.248.33:3000/users/${id}`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Basic ' +
@@ -94,16 +98,49 @@ const ViewMyProfile = ({ navigation, route }) => {
 
     }
 
-    
+    let html = `
+    <html>
+      <body>
+        <h1>Hi ${username}</h1>
+        <p style="color: black;">Your List of Pokemons Registred</p>
+        <table border="1" style="width:100%">
+        <tr>
+            <th>Pokemon Name</th>
+            <th>Shiny</th>
+            <th>Nature</th>
+            <th>Move 1</th>
+            <th>Move 2</th>
+            <th>Move 3</th>
+            <th>Move 4</th>
+        </tr>
+        `
+    pokemon.forEach(pokemon => {
+        html += `<tr>
+            <td>${pokemon.name}</td>
+            <td>${pokemon.shiny}</td>
+            <td>${pokemon.Nature.name}</td>
+            <td>${pokemon.move1}</td>
+            <td>${pokemon.move2}</td>
+            <td>${pokemon.move3}</td>
+            <td>${pokemon.move4}</td>
+        </tr> `
+    });
+    html += `</table>
+        <H2>COPYRIGHT: POKEDEX FALLER</H2>
+        </body>
+        </html>`;
+    let generatePdf = async () => {
+        const file = await printToFileAsync({
+            html: html,
+            base64: false
+        });
+
+        await shareAsync(file.uri);
+    };
 
     useEffect(() => {
         ListPokemons();
     }, [])
-
-    useEffect(() => {
-        ListPokemons();
-    })
-
 
     async function ListPokemons() {
         //console.log('CREDENTIALS=>', _username, _password);
@@ -126,16 +163,16 @@ const ViewMyProfile = ({ navigation, route }) => {
 
     }
 
-
-
     function RenderItem({ item }) {
         return <CardPokemonUser {...item} render={() => ListPokemons()} />
     }
 
 
+
+
     return (
         <>
-         <Header label="USER PROFILE" />
+            <Header label="USER PROFILE" />
             <View style={[theme.modal, { padding: 10, borderWidth: 2, borderColor: "white", borderRadius: 8 }]}>
 
                 <Text style={theme.labelWhite}>User : {username}</Text>
@@ -145,6 +182,12 @@ const ViewMyProfile = ({ navigation, route }) => {
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                         <Text style={theme.labelWhite}>EDIT PROFILE</Text>
                         <FontAwesome name="edit" size={30} color="#91D8DF" />
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => generatePdf()}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                        <Text style={theme.labelWhite}>GENERATE PDF</Text>
+                        <FontAwesome name="file-pdf-o" size={30} color="#FFA756" />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -162,6 +205,7 @@ const ViewMyProfile = ({ navigation, route }) => {
                     renderItem={RenderItem}
                     numColumns={2}
                 />
+               
             </View>
 
             <Modalize
@@ -249,12 +293,12 @@ const ViewMyProfile = ({ navigation, route }) => {
                 snapPoint={200}
                 height={200}
                 modalStyle={theme.modal}>
-                    <View style={styles.container}>
-                <Text style={theme.email}>You Changed Your Profile Successfully, Gonna be Redirected to Login Screen</Text>
-                <CustomButton width="100%" label="Confirm" backgroundColor="#8BBE8A" textColor="white" style={[theme.button, {textAlign: "center", flex: 1}]} onPress={() => navigation.reset({
-                    index: 0,
-                    routes: [{ name: "ViewNewLogin" }]
-                })} />
+                <View style={styles.container}>
+                    <Text style={theme.email}>You Changed Your Profile Successfully, Gonna be Redirected to Login Screen</Text>
+                    <CustomButton width="100%" label="Confirm" backgroundColor="#8BBE8A" textColor="white" style={[theme.button, { textAlign: "center", flex: 1 }]} onPress={() => navigation.reset({
+                        index: 0,
+                        routes: [{ name: "ViewNewLogin" }]
+                    })} />
                 </View>
             </Modalize>
 

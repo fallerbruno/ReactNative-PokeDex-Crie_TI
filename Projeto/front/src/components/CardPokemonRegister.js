@@ -173,8 +173,8 @@ const CardPokemonRegister = (pokemon) => {
             <View style={{ flex: 1 }}>
                 <Modal isVisible={isModalVisible}>
 
-                    <View style={theme.modal}>
-                        <View style={[theme.modal, { backgroundColor: colorsByTypeTag(pokemon.type1), height: height * .40, borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }]}>
+                    <View style={[theme.modal, {height: "100%", borderRadius: 16}]}>
+                        <View style={[theme.modal, { backgroundColor: colorsByTypeTag(pokemon.type1), height: height * .40, borderRadius: 16}]}>
                             <Text style={theme.PokemonIdModal}>#{pokemon.id}</Text>
                             {pokemon.shiny ?
                                 <Image
@@ -217,7 +217,7 @@ const CardPokemonRegister = (pokemon) => {
 
                         </View>
                         <View style={{ alignItems: 'center' }}>
-                            <CustomButton label="Close" backgroundColor='white' onPress={toggleModal} />
+                            <CustomButton label="Close" backgroundColor='#4C91B2' onPress={toggleModal} />
                         </View>
                     </View>
                 </Modal>

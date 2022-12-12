@@ -49,8 +49,8 @@ const CardPokemon = (pokemon) => {
             <View style={{ flex: 1 }}>
                 <Modal isVisible={isModalVisible}>
 
-                    <View style={theme.modal}>
-                        <View style={[theme.modal, { backgroundColor: colorsByTypeTag(pokemon.type1), height: height * .40, borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }]}>
+                    <View style={[theme.modal, {paddingBottom: 10, borderRadius: 16, height: "100%"}]}>
+                        <View style={[theme.modal, { backgroundColor: colorsByTypeTag(pokemon.type1), height: height * .40, borderRadius: 16 }]}>
                             <Text style={theme.PokemonIdModal}>#{pokemon.id}</Text>
                             <Image
                                 style={{ width: width * .75, height: height * .35, alignSelf: "center" }}
@@ -115,7 +115,7 @@ const CardPokemon = (pokemon) => {
                                 },
                             ]}
                             width={Dimensions.get('window').width - 16}
-                            height={220}
+                            height={150}
                             
                             chartConfig={{
                                 backgroundColor: '#1cc910',
@@ -137,7 +137,7 @@ const CardPokemon = (pokemon) => {
                             absolute //for the absolute number remove if you want percentage
                         />
                         <View style={{ alignItems: 'center' }}>
-                            <CustomButton label="Close" backgroundColor='white' onPress={toggleModal} />
+                            <CustomButton label="Close" backgroundColor='#4C91B2' onPress={toggleModal} />
                         </View>
                     </View>
                 </Modal>

@@ -44,6 +44,12 @@ const ViewNav1 = (props) => {
         <Text style={theme.navtext}>MY PROFILE</Text>
       </TouchableOpacity>
       </View>
+      <View style={{ padding: 16, flexDirection: "row", backgroundColor: "#8BBE8A", width: width, marginBottom: 10, marginTop: 10 }} >
+      <TouchableOpacity onPress={() => props.navigation.navigate("ViewMessages")} style={[theme.menuItens,{backgroundColor: "#8BBE8A"}]}>
+      <MaterialCommunityIcons name="message-processing" size={50} color="black" />
+        <Text style={theme.navtext}>MESSAGES</Text>
+      </TouchableOpacity>
+      </View>
     </View>
 
   );

@@ -19,6 +19,20 @@ class MessageController {
       };
     }
 
+    if (params.senderId) {
+      where.senderId =
+      {
+        [Op.eq]: params.senderId
+      };
+    }
+
+    if (params.recipientId) {
+      where.recipientId =
+      {
+        [Op.eq]: params.recipientId
+      };
+    }
+
     if (params.from) {
       where.from = {
         [Op.iLike]: `%${params.from}%`,
@@ -55,6 +69,7 @@ class MessageController {
   create = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = await req.body
+      
       const message = await MessageModel.create(data);
       res.json(message);
     } catch (error: any) {
