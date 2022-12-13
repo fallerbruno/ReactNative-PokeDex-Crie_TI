@@ -5,7 +5,7 @@ export const sendMail = async (req: Request) => {
   const data = req.body;
 
   let email_user: string = "bruno.faller@universo.univates.br";
-  let email_pass: string = "pcesbuajtfocekhj";
+  let email_pass: string = "";
   let email_to: string = data.from;
   let email_subject: string = data.subject;
   let email_html: string = `

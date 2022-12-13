@@ -138,7 +138,6 @@ const CardPokemonRegister = (pokemon) => {
                             <TouchableOpacity onPress={() => sendEmail()} style={{ alignSelf: "flex-end" }}>
                                 <MaterialIcons name="email" size={30} color="#005C53" />
                             </TouchableOpacity>
-
                         </View>
 
                     }
@@ -151,6 +150,7 @@ const CardPokemonRegister = (pokemon) => {
 
                 </View>
                 <Text style={theme.cardTextDate}>Date: {pokemon.updatedAt.split('-').join('/').slice(0, 10)}</Text>
+                <Text style={theme.cardTextDate}>Owner: {pokemon.User.email}  {pokemon.User.name}</Text>
 
                 {pokemon.shiny ?
                     <Image

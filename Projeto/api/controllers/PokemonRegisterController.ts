@@ -44,7 +44,7 @@ class PokemonRegisterController {
       {
         model: User,
         required: false,
-        attributes: ['email'],
+        attributes: ['email', 'name'],
       }]
     });
     res.json(pokemon);
