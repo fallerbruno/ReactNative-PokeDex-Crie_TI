@@ -17,7 +17,7 @@ async function getAllPokemons() {
         const type2 = json.types[1] ? json.types[1].type.name : null
         const ability2 = json.abilities[1] ? json.abilities[1].ability.name : ""
 
-        axios('http://177.44.248.33:3000/pokemons', {
+        axios('http://localhost:3000/pokemons', {
             method: 'post',
             headers: {
                 'Authorization': 'Basic ' +

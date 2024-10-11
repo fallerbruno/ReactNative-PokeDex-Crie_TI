@@ -12,7 +12,7 @@ async function getAllPokemons() {
         const json = await response.json()
         const up = json.increased_stat ?  json.increased_stat.name : null
         const down = json.decreased_stat ? json.decreased_stat.name : null
-        axios('http://177.44.248.33:3000/natures', {
+        axios('http://localhost:3000/natures', {
             method: 'post',
             headers: {
                 'Authorization': 'Basic ' +

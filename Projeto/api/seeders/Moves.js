@@ -24,7 +24,7 @@ async function getAllPokemons() {
                     MoveId: i,
                 }
 
-                axios('http://177.44.248.33:3000/pokemoncanusemove', {
+                axios('http://localhost:3000/pokemoncanusemove', {
                     method: 'post',
                     headers: {
                         'Authorization': 'Basic ' +
@@ -44,7 +44,7 @@ async function getAllPokemons() {
                     });
         });
 
-    //     axios('http://177.44.248.33:3000/moves', {
+    //     axios('http://localhost:3000/moves', {
     //         method: 'post',
     //         headers: {
     //             'Authorization': 'Basic ' +

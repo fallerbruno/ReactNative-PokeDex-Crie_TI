@@ -1,5 +1,5 @@
-module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.bulkInsert('users', 
+export default {
+  up: (queryInterface) => queryInterface.bulkInsert('users', 
     [
       {
         name: "admin",

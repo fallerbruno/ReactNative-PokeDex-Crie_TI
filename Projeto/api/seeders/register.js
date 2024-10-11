@@ -4,7 +4,7 @@ const base64 = require('base-64')
 
 async function getAllPokemons() {
 
-    axios('http://177.44.248.33:3000/pokemonsregister', {
+    axios('http://localhost:3000/pokemonsregister', {
         method: 'post',
         headers: {
             'Authorization': 'Basic ' +

@@ -12,7 +12,7 @@ async function getAllPokemons() {
         const json = await response.json();
         console.log(json)
 
-        axios('http://177.44.248.33:3000/types', {
+        axios('http://localhost:3000/types', {
             method: 'post',
             headers: {
                 'Authorization': 'Basic ' +
